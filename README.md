@@ -16,15 +16,15 @@ The following build instructions work with Ubuntu 20.04 and the [ESP_01S and Pro
 1. Open VSCode, and search for the PlatformIO IDE in the VSCode Extension Manager to install it, as shown in [this page](https://platformio.org/install/ide?install=vscode).
 1. Install PlatformIO shell commands by following [these instructions](https://docs.platformio.org/en/stable/core/installation/shell-commands.html#piocore-install-shell-commands).
 1. Run ```git clone --recursive https://github.com/JAParedes/mavesp8266.git''' and go into the **mavesp8266** directory.
-1. Connect the ESP-01S and the Programming Board vis the USB port and run ```pio run -e esp01\_1m\_MCU -t upload```.
+1. Connect the ESP-01S and the Programming Board vis the USB port and run ```pio run -e esp01_1m_MCU -t upload```.
 
 The ESP board will be in access point mode initially. To change its properties, power up the ESP board and connect to the **PixRacer** network with the password **pixracer**. Then, using a web browser, access [http://192.168.4.1](http://192.168.4.1) and click on setup. The description of the available options are shown in [here.](HTTP.md)
 
 ### Useful commands:
 
 * ```pio run``` - process/build all targets
-* ```pio run -e esp01\_1m\_MCU``` - process/build just the ESP 01s target (change esp01\_1m\_MCU for other targets)
-* ```pio run -e esp01\_1m\_MCU -t upload``` - build and upload firmware to embedded board
+* ```pio run -e esp01_1m_MCU``` - process/build just the ESP 01s target (change ```esp01_1m_MCU''' for other targets)
+* ```pio run -e esp01_1m_MCU -t upload``` - build and upload firmware to embedded board
 * ```pio run -t clean``` - clean project (remove compiled files)
 
 The resulting image(s) can be found in the directory ```.pioenvs``` created during the build process.
