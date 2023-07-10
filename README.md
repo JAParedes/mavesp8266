@@ -23,7 +23,7 @@ The ESP board will be in access point mode initially. To change its properties, 
 ### Useful commands:
 
 * ```pio run``` - process/build all targets
-* ```pio run -e esp01_1m_MCU``` - process/build just the ESP 01s target (change ```esp01_1m_MCU''' for other targets)
+* ```pio run -e esp01_1m_MCU``` - process/build just the ESP 01s target (change ```esp01_1m_MCU``` for other targets)
 * ```pio run -e esp01_1m_MCU -t upload``` - build and upload firmware to embedded board
 * ```pio run -t clean``` - clean project (remove compiled files)
 
