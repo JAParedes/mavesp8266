@@ -8,35 +8,36 @@ Download the legacy version (MAVLink V1) from here: [Firmware version 1.1.1](htt
 
 ## ESP8266 WiFi Access Point and MavLink Bridge
 
-[![Join the chat at https://gitter.im/dogmaphobic/mavesp8266](https://badges.gitter.im/dogmaphobic/mavesp8266.svg)](https://gitter.im/dogmaphobic/mavesp8266?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+The original code was developed using a [NodeMCU v2 Dev Kit](http://www.seeedstudio.com/depot/NodeMCU-v2-Lua-based-ESP8266-development-kit-p-2415.html). It has been tested with the ESP-01 shipped with the [PixRacer](https://pixhawk.org/modules/pixracer) and it is stable at 921600 baud.
 
-This was developed using a [NodeMCU v2 Dev Kit](http://www.seeedstudio.com/depot/NodeMCU-v2-Lua-based-ESP8266-development-kit-p-2415.html) as it conveniently provides a secondary UART for debugging. It has been tested with the ESP-01 shipped with the [PixRacer](https://pixhawk.org/modules/pixracer) and it is stable at 921600 baud.
+The following build instructions work with Ubuntu 20.04 and the [ESP_01S and Programming Board](https://www.amazon.com/ESP8266-Breakout-Programmer-Downloader-Auto-Download/dp/B08F9X3M5J).
 
-The build enviroment is based on [PlatformIO](http://platformio.org). Follow the instructions found here: http://platformio.org/#!/get-started (only tested on Mac OS) for installing it but skip the ```platform init``` step as this has already been done, modified and it is included in this repository. In summary:
+1. Download the [VSCode](https://code.visualstudio.com/) IDE.
+1. Open VSCode, and search for the PlatformIO IDE in the VSCode Extension Manager to install it, as shown in [this page](https://platformio.org/install/ide?install=vscode).
+1. Install PlatformIO shell commands by following [these instructions](https://docs.platformio.org/en/stable/core/installation/shell-commands.html#piocore-install-shell-commands).
+1. Run ```git clone --recursive https://github.com/JAParedes/mavesp8266.git''' and go into the **mavesp8266** directory.
+1. Connect the ESP-01S and the Programming Board vis the USB port and run ```pio run -e esp01_1m_MCU -t upload```.
 
-```
-brew install platformio
-git clone --recursive https://github.com/dogmaphobic/mavesp8266.git
-cd mavesp8266
-platformio run
-```
-
-When you run ```platformio run``` for the first time, it will download the toolchains and all necessary libraries automatically.
+The ESP board will be in access point mode initially. To change its properties, power up the ESP board and connect to the **PixRacer** network with the password **pixracer**. Then, using a web browser, access [http://192.168.4.1](http://192.168.4.1) and click on setup. The description of the available options are shown in [here.](HTTP.md)
 
 ### Useful commands:
 
-* ```platformio run``` - process/build all targets
-* ```platformio run -e esp12e``` - process/build just the ESP12e target (the NodeMcu v2, Adafruit HUZZAH, etc.)
-* ```platformio run -e esp12e -t upload``` - build and upload firmware to embedded board
-* ```platformio run -t clean``` - clean project (remove compiled files)
+* ```pio run``` - process/build all targets
+* ```pio run -e esp01_1m_MCU``` - process/build just the ESP 01s target (change ```esp01_1m_MCU``` for other targets)
+* ```pio run -e esp01_1m_MCU -t upload``` - build and upload firmware to embedded board
+* ```pio run -t clean``` - clean project (remove compiled files)
 
 The resulting image(s) can be found in the directory ```.pioenvs``` created during the build process.
 
+### Note about Access Point and Station modes:
+
+In Access Point mode, the ESP board is better suited for one-to-one communication between the corresponding PX4 board and a computer, although this may not be suited for applications that require a high rate of data transfer.
+
+In Station Mode, the ESP board can connect to a wireless router, which can increase the range and data throughout, depending on the chosen router. Make sure to choose a suitable IP address and PORT. Note that the ESP board will wait about a minute to connect to the network with the name specified in the **Station SSID** field. After this time, the board will switch to Access Point mode. If you require more time, increase the _120_ number in line 163 in **/src/main.cpp**.
+
 ### MavLink Submodule
 
-The ```git clone --recursive``` above not only cloned the MavESP8266 repository but it also installed the dependent [MavLink](https://github.com/mavlink/c_library) sub-module. To upated the module (when needed), use the command:
-
-```git submodule update --init```
+The ```git clone --recursive``` above not only cloned the MavESP8266 repository but it also installed the dependent [MavLink](https://github.com/mavlink/c_library) sub-module. To upated the module (when needed), use the command ```git submodule update --init'''.
 
 ### Wiring it up
 
