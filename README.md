@@ -16,9 +16,11 @@ The following build instructions work with Ubuntu 20.04 and the [ESP_01S and Pro
 1. Open VSCode, and search for the PlatformIO IDE in the VSCode Extension Manager to install it, as shown in [this page](https://platformio.org/install/ide?install=vscode).
 1. Install PlatformIO shell commands by following [these instructions](https://docs.platformio.org/en/stable/core/installation/shell-commands.html#piocore-install-shell-commands).
 1. Run ```git clone --recursive https://github.com/JAParedes/mavesp8266.git''' and go into the **mavesp8266** directory.
-1. Connect the ESP-01S and the Programming Board vis the USB port and run ```pio run -e esp01_1m_MCU -t upload```.
+1. Connect the ESP-01S and the Programming Board via the USB port and run ```pio run -e esp01_1m_MCU -t upload```.
 
-The ESP board will be in access point mode initially. To change its properties, power up the ESP board and connect to the **PixRacer** network with the password **pixracer**. Then, using a web browser, access [http://192.168.4.1](http://192.168.4.1) and click on setup. The description of the available options are shown in [here.](HTTP.md)
+In the case where the PlatformIO IDE can't find the Python Interpreter, run ```sudo apt-get install python3-venv``` and restart the IDE (for more details, go [here](https://github.com/platformio/platformio-core-installer/issues/1774)).
+
+The ESP board will be in access point mode initially. To change its properties, power up the ESP board and connect to the **PixRacer** network with the password **pixracer**. Then, using a web browser, access [http://192.168.4.1](http://192.168.4.1) and click on setup. The description of the available options are shown [here.](HTTP.md)
 
 ### Useful commands:
 
@@ -37,7 +39,7 @@ In Station Mode, the ESP board can connect to a wireless router, which can incre
 
 ### MavLink Submodule
 
-The ```git clone --recursive``` above not only cloned the MavESP8266 repository but it also installed the dependent [MavLink](https://github.com/mavlink/c_library) sub-module. To upated the module (when needed), use the command ```git submodule update --init'''.
+The ```git clone --recursive``` above not only cloned the MavESP8266 repository but it also installed the dependent [MavLink](https://github.com/mavlink/c_library) sub-module. To upate the module (when needed), use the command ```git submodule update --init'''.
 
 ### Wiring it up
 
